@@ -1,0 +1,3 @@
+Dim myRange As Range
+Set myRange = Selection
+myRange.Offset(0, 1).Select

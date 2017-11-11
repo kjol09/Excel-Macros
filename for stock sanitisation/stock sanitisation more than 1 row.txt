@@ -1,0 +1,28 @@
+Sub ee()
+'
+' ee Macro
+'
+' Keyboard Shortcut: Ctrl+m
+'
+Dim myRow
+Dim myRow2
+Dim myColumn
+
+myRow = ActiveCell.Offset(1, 7).Row
+myRow2 = ActiveCell.Offset(1, 7).End(xlDown).Row
+myColumn = Split(ActiveCell.Offset(1, 7)(1).Address(1, 0), "$")(0)
+
+    ActiveCell.Offset(0, 7).Range("A1").Select
+    ActiveCell.Formula = "=SUM(" & myColumn & myRow & ":" & myColumn & myRow2 & ")"
+    Selection.Copy
+    ActiveCell.Offset(0, 1).Range("A1:D1").Select
+    ActiveSheet.Paste
+    ActiveCell.Offset(0, -1).Range("A1").Select
+    Application.CutCopyMode = False
+    Selection.ClearContents
+    ActiveCell.Offset(0, 5).Range("A1").Select
+    ActiveCell.FormulaR1C1 = "=RC[-11]+RC[-4]-RC[-2]"
+    ActiveCell.Offset(0, 1).Range("A1").Select
+    ActiveCell.FormulaR1C1 = "=RC[-11]+RC[-4]-RC[-2]"
+    ActiveCell.Offset(0, -13).Range("A1").Select
+End Sub
